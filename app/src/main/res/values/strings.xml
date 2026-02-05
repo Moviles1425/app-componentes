@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">app-componentes</string>
+    <string name="texttitulo">REGISTRO DE USUARIOS</string>
+    <string name="textnombres">Ingrese sus nombres</string>
+    <string name="textapellidos">Ingrese sus apellidos</string>
+    <string name="textgenero">Seleccione su género:</string>
+    <string name="textmasculino">Masculino</string>
+    <string name="textfemenino">Femenino</string>
+    <string name="textotros">Otro</string>
+    <string name="texthobbies">Seleccione sus hobbies:</string>
+    <string name="textfutbol">Futbol</string>
+    <string name="textmusica">Música</string>
+    <string name="textestadocivil">Seleccione su estado civil:</string>
+    <string name="textnotificacion">¿Notificar al usuario?</string>
+    <string name="textregistrar">REGISTRAR USUARIO</string>
+    <string name="textlistausuarios">VER LISTA DE USUARIOS</string>
+    <string name="texttitulolista">LISTA DE USUARIOS</string>
+    <string name="textirregistro">REGISTRAR USUARIOS</string>
+</resources>
