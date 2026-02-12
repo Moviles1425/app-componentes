@@ -85,7 +85,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
     }
     fun listarUsuarios(){
         val intentLista = Intent(this, ListaActivity::class.java).apply {
-            putExtra("listausuario", listUsuarios)
+
+            putStringArrayListExtra("listausuario", listUsuarios)
         }
         startActivity(intentLista)
     }
