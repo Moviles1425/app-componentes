@@ -1,7 +1,9 @@
 package pe.edu.idat.app_componentes
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import androidx.activity.enableEdgeToEdge
@@ -9,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import pe.edu.idat.app_componentes.databinding.ActivityMainBinding
+import pe.edu.idat.app_componentes.utils.AppMensaje
+import pe.edu.idat.app_componentes.utils.TipoMensaje
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     private val listHobbies = ArrayList<String>()
@@ -69,10 +73,44 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
     fun registrarUsuario(){
-
+        val infoUsuario = binding.etnombres.text.toString()+"-"+
+                binding.etapellidos.text.toString()+"-"+
+                getGenero()+"-"+
+                listHobbies.toTypedArray().contentToString()+"-"+
+                estadoCivil+"-"+binding.swnotificar.isChecked
+        listUsuarios.add(infoUsuario)
+        setearControles()
+        AppMensaje.mensajeSnackBar(binding.root, "Usuario Registrado correctamente",
+            TipoMensaje.SUCCESS)
     }
     fun listarUsuarios(){
+        val intentLista = Intent(this, ListaActivity::class.java).apply {
+            putExtra("listausuario", listUsuarios)
+        }
+        startActivity(intentLista)
+    }
 
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        estadoCivil = if(position > 0){
+            p0!!.getItemAtPosition(position).toString()
+        }else ""
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+    }
+
+    fun setearControles(){
+        listHobbies.clear()
+        binding.etnombres.text.clear()
+        binding.etapellidos.text.clear()
+        binding.swnotificar.isChecked = false
+        binding.rggenero.clearCheck()
+        binding.cbfutbol.isChecked = false
+        binding.cbmusica.isChecked = false
+        binding.cbotros.isChecked = false
+        binding.spestadocivil.setSelection(0)
+        binding.etnombres.isFocusableInTouchMode = true
+        binding.etnombres.requestFocus()
     }
 
 }
